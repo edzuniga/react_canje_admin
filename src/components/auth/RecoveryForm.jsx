@@ -32,7 +32,7 @@ export const RecoveryForm = () => {
           <BotonPrincipal titulo={"Restablecer contraseña"} />
         </div>
         <div className="mt-4 flex justify-end ">
-          <Link to="/register">
+          <Link to="/">
             <button className="active:scale-[0.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 px-8 rounded-xl bg-gray-200 text-sm font-thin">
               Regresar
             </button>
