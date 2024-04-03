@@ -3,24 +3,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { db } from "../../firebase";
+import { serverTimestamp, doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 function RegisterForm() {
+  //Función general para manejar el submit
   async function handleOnSubmit(e) {
+    //prevenir que el formulario se recargue
     e.preventDefault();
+
+    //Funciones hacia firebase
     try {
+      //Iniciar instancia de firebase auth
       const auth = getAuth();
+      //función de firebase auth para CREAR un usuario con correo y contraseña
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+      //obtener una instancia del usuario recién creado
       const user = userCredential.user;
+
+      //Crear un objeto con la información del formulario completo
+      const formDataCopy = { ...formData };
+      //Removerle la contraseña al formulario
+      delete formDataCopy.password;
+      //Obtener el timestamp en que fue creado y grabarlo en el objeto y otros campos
+      formDataCopy.timestamp = serverTimestamp();
+      formDataCopy.rol = "porDefinir";
+      formDataCopy["img_url"] = "porDefinir";
+
+      console.log(formDataCopy);
+
+      //Grabar al usuario con toda la información del formulario en Firestore
+      await setDoc(doc(db, "usuarios", user.uid), formDataCopy);
+
       console.log(user);
+
+      //Navegar a la página deseada
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Algo salió mal con el registro!!");
     }
   }
 
@@ -33,6 +60,9 @@ function RegisterForm() {
     confirmPassword: "",
   });
   const { nombres, apellidos, email, password, confirmPassword } = formData;
+
+  //Navegación después de realizar el registro
+  const navigate = useNavigate();
 
   //Asignación de los values de los inputs
   function handleOnChange(e) {
