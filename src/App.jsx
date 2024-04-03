@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import { ErrorPage } from "./components/pages/Error";
-import { RootPage } from "./components/pages/Root";
+import { RootPage } from "./components/layouts/Root";
 import { RecoverPage } from "./components/pages/Recover";
 
 //Define the ROUTER

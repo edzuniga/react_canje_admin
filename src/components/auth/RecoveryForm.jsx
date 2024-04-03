@@ -21,35 +21,38 @@ export const RecoveryForm = () => {
         mensaje de correo electrónico con instrucciones para restablecer tu
         contraseña.
       </p>
-      <div className="mt-2">
-        <div className="mt-4">
-          <div className="relative flex items-center">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={handleOnChange}
-              value={email}
-              placeholder="Correo electrónico"
-              className="pr-4 pl-14 py-2.5 text-sm text-black rounded-lg bg-gray-100 border border-gray-200 w-full outline-custom-login-blue"
-            />
-            <div className="absolute left-4">
-              <FontAwesomeIcon icon={faEnvelope} color="#374151" />
+      <form>
+        <div className="mt-2">
+          <div className="mt-4">
+            <div className="relative flex items-center">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                onChange={handleOnChange}
+                value={email}
+                placeholder="Correo electrónico"
+                className="pr-4 pl-14 py-2.5 text-sm text-black rounded-lg bg-gray-100 border border-gray-200 w-full outline-custom-login-blue"
+                required
+              />
+              <div className="absolute left-4">
+                <FontAwesomeIcon icon={faEnvelope} color="#374151" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="mt-4 flex justify-end">
-          <BotonPrincipal titulo={"Restablecer contraseña"} />
+          <div className="mt-4 flex justify-end">
+            <BotonPrincipal titulo={"Restablecer contraseña"} />
+          </div>
+          <div className="mt-4 flex justify-end ">
+            <Link to="/">
+              <button className="active:scale-[0.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 px-8 rounded-xl bg-gray-200 text-sm font-thin">
+                Regresar
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="mt-4 flex justify-end ">
-          <Link to="/">
-            <button className="active:scale-[0.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-3 px-8 rounded-xl bg-gray-200 text-sm font-thin">
-              Regresar
-            </button>
-          </Link>
-        </div>
-      </div>
+      </form>
     </div>
   );
 };
