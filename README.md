@@ -7,4 +7,4 @@ Permite:
 - Asignar puntos a usuarios en distintos comercios.
 - CANJEar los puntos.
 
-- [UP Studios](https://uphn.net) inciado en abril 2024
+- [UP Studios](https://uphn.net) iniciado en abril 2024

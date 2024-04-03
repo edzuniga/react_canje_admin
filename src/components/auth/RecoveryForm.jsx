@@ -4,6 +4,13 @@ import BotonPrincipal from "../widgets/BotonPrincipal";
 import { Link } from "react-router-dom";
 
 export const RecoveryForm = () => {
+  //Manejar el estado de los inputs del login
+  const [email, setEmail] = useState("");
+
+  //Asignación de los values de los inputs
+  function handleOnChange(e) {
+    setEmail((prevState) => (prevState = e.target.value));
+  }
   return (
     <div className="pl-14 pr-14 py-8 max-w-md">
       <p className="font-medium text-xl text-gray-500">
@@ -19,6 +26,10 @@ export const RecoveryForm = () => {
           <div className="relative flex items-center">
             <input
               type="email"
+              id="email"
+              name="email"
+              onChange={handleOnChange}
+              value={email}
               placeholder="Correo electrónico"
               className="pr-4 pl-14 py-2.5 text-sm text-black rounded-lg bg-gray-100 border border-gray-200 w-full outline-custom-login-blue"
             />
